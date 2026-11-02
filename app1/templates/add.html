@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Post - My Blog{% endblock %}
+
+{% block content %}
+    <div class="w-full bg-[#BDBD67] flex flex-col items-center h-25 text-[#713600] justify-center pt-2">
+        <h2 class="text-xl font-bold mb-1"><i class="fa-solid fa-note-sticky"></i> Add a New Post</h2>
+        <p class="text-lg text-white">Fill out the form below to add a new post to your blog.</p>
+    </div>
+    <div class="flex justify-center p-8 gap-8">
+        <section class="w-1/2">
+            <form method="post" class="bg-[#808034] p-6 rounded shadow">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="mt-4 bg-[#bdbd67] text-[#713600] border border-[#713600] px-4 py-2 rounded transition-transform duration-300 hover:scale-105 cursor-pointer">Save Post</button>
+                <a href="{% url 'index' %}" class="ml-4 bg-[#bdbd67] text-[#713600] border border-[#713600] px-4 py-2 rounded transition-transform duration-300 hover:scale-105 cursor-pointer">Cancel</a>
+            </form>
+        </section>
+    </div>
+{% endblock %}
