@@ -40,7 +40,7 @@
 
         <!-- Read More Button -->
         <div>
-            <a href="#" class="inline-block px-4 py-2 text-sm font-medium text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors duration-200">
+            <a href="{% url 'blog_post_detail' post.slug %}" class="inline-block px-4 py-2 text-sm font-medium text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors duration-200">
                 Read More &rarr;
             </a>
         </div>
@@ -55,7 +55,7 @@
                 <h3 class="text-1.5xl font-bold mb-4 text-white mx-4"><i class="fa-solid fa-folder-open"></i> Categories</h3>
             <ul class="list-disc list-inside">
                 {% for category in categories %}
-                    <li style="list-style:none;" class="bg-white w-full p-3 border border-[#713600]"><a href="" class="text-[#713600] hover:underline">{{ category}}</a></li>
+                    <li style="list-style:none;" class="bg-white w-full p-3 border border-[#713600]"><a href="{% url 'category_posts' category.id %}" class="text-[#713600] hover:underline">{{ category}}</a></li>
                 {% empty %}
                     <li>No categories available.</li>
                 {% endfor %}
@@ -65,7 +65,7 @@
                 <h3 class="text-1.5xl font-bold mb-4 text-white mx-4"><i class="fa-solid fa-folder-open"></i> Recent Posts</h3>
             <ul class="list-disc list-inside">
                 {% for post in posts %}
-                    <li style="list-style:none;" class="bg-white w-full p-3 border border-[#713600]"><a href="" class="text-[#713600] hover:underline">{{ post.title}}</a></li>
+                    <li style="list-style:none;" class="bg-white w-full p-3 border border-[#713600]"><a href="{% url 'blog_post_detail' post.slug %}" class="text-[#713600] hover:underline">{{ post.title}}</a></li>
                 {% empty %}
                     <li>No recent posts available.</li>
                 {% endfor %}

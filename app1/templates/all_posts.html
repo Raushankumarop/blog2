@@ -30,7 +30,7 @@
                 <tr class="hover:bg-gray-50 transition">
                     <td class="py-4 px-4 font-medium text-gray-900">{{ forloop.counter }}</td>
                     <td class="py-4 px-4">
-                        <a href="#" class="text-black hover:underline font-medium">{{ post.title }}</a>
+                        <a href="{% url 'blog_post_detail' post.slug %}" class="text-black hover:underline font-medium">{{ post.title }}</a>
                     </td>
                     <td class="py-4 px-4">
                         <!-- Dynamic or mapped color category tag -->

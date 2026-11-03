@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import BlogPost, Category
 from .forms import BlogPostForm
 import random
@@ -21,6 +21,7 @@ def add_post(request):
         form = BlogPostForm(request.POST)
         if form.is_valid():
             form.save()
+        return redirect('index')
     else:
         form = BlogPostForm()
     return render(request, 'add.html',  {'form': form})
@@ -37,3 +38,17 @@ def all_posts(request):
         'draft_count': draft_count
     })
 
+def all_categories(request):
+    categories = Category.objects.all()
+    return render(request, 'categories.html', {'categories': categories})
+
+def blog_post_detail(request, slug):
+    post = BlogPost.objects.get(slug=slug)
+    categories = Category.objects.all()
+    posts = BlogPost.objects.filter(status='Published').order_by('-created_at')[:5]
+    return render(request, 'blog_detail.html', {'blog': post, 'categories': categories, 'posts': posts})
+
+def category_posts(request, category_id):
+    category = Category.objects.get(id=category_id)
+    posts = BlogPost.objects.filter(category=category)
+    return render(request, 'category_wise.html', {'category': category, 'posts': posts})

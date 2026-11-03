@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block content %}
+    <div class="flex justify-between items-center my-6 mx-6">
+        <h1 class="text-2xl font-bold text-gray-800 flex items-center gap-2">
+            <i class="fa-solid fa-folder-open"></i> All Categories
+        </h1>
+        <a href="" class="bg-[#808034] hover:bg-[#6b6b2c] text-white px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-2 transition">
+            <i class="fa-solid fa-plus"></i> Add Category
+        </a>
+    </div>
+    <div class="flex flex-wrap gap-4 justify-center mx-6">
+        {% if categories|length == 0 %}
+            <p class="text-gray-600">No categories available.</p>
+        {% endif %} 
+        {% for category in categories %}
+            <div class="bg-white w-1/5 h-64 rounded-lg shadow p-4 mb-4">
+                
+                    <h2 class="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                        {{category.icon|default:"<i class='fa-solid fa-folder'></i>"|safe}}
+                        {{ category.name }}
+                    </h2>
+                    <p class="text-gray-600 mt-2">{{ category.description }}</p>
+                    <p class="text-gray-500 mt-4 text-sm">Posts: {{ category.posts.count }}</p>
+                    <a href="{% url 'category_posts' category.id %}" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded mt-4 inline-block transition">View Posts</a>
+              
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+       

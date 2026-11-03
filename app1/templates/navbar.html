@@ -1,6 +1,6 @@
     <nav class="flex items-center justify-around w-2/5">
                 <a href="{% url 'index' %}" class="mr-4 hover:scale-110 gap-2 flex items-center"><i class="fa-solid fa-house mr-1"></i>Home</a>
                 <a href="{% url 'all_posts' %}" class="hover:scale-110 gap-2 flex items-center"><i class="fa-solid fa-note-sticky"></i>All Posts</a>
-                <a href="" class="hover:scale-110 gap-2 flex items-center"><i class="fa-solid fa-list"></i>Categories</a>
+                <a href="{% url 'all_categories' %}" class="hover:scale-110 gap-2 flex items-center"><i class="fa-solid fa-list"></i>Categories</a>
                 <a href="{% url 'add_post'%}" class="hover:scale-110 gap-2 flex items-center"><i class="fa-solid fa-plus"></i>Add Posts</a>
     </nav>
