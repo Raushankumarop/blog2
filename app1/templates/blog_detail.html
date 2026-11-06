@@ -46,10 +46,10 @@
 
             <!-- Bottom Action Buttons (Edit & Delete) -->
             <div class="mt-8 pt-6 border-t border-gray-100 flex items-center gap-3">
-                <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow transition">
+                <a href="{% url 'update_post' blog.slug %}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow transition">
                     ✏️ Edit Post
                 </a>
-                <a href="#" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow transition">
+                <a href="{% url 'delete_post' blog.slug %}" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow transition">
                     🗑️ Delete Post
                 </a>
             </div>

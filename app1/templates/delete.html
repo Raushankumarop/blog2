@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block title %}Delete Post{% endblock %}
+{% block content %}
+     <div class="max-w-7xl mx-auto px-4 py-8">
+    
+    <!-- Delete Confirmation Card Container -->
+    <div class="max-w-xl mx-auto bg-white rounded-2xl border border-red-200 shadow-lg overflow-hidden my-6">
+        
+        <!-- Red Top Warning Header -->
+        <div class="bg-[#808034] px-6 py-4 flex items-center justify-center gap-2 text-white font-bold text-lg">
+            ⚠️ Delete Post
+        </div>
+
+        <!-- Card Body -->
+        <div class="p-6 sm:p-8 flex flex-col items-center text-center">
+            
+            <!-- Trash Can Emoji Icon -->
+            <div class="text-5xl mb-3">
+                🗑️
+            </div>
+
+            <!-- Confirmation Title & Subtitle -->
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-1">
+                Are you sure?
+            </h2>
+            <p class="text-sm text-gray-500 mb-6">
+                You are about to permanently delete this blog post.
+            </p>
+
+            <!-- Post Details Summary Box -->
+            <div class="w-full bg-gray-50 rounded-xl border border-gray-200 p-4 mb-6 text-left">
+                <table class="w-full text-sm">
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="py-2 font-medium text-gray-500 w-1/3">Title</td>
+                            <td class="py-2 font-semibold text-gray-900 w-2/3">{{ post.title }}</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 font-medium text-gray-500">Author</td>
+                            <td class="py-2 text-gray-800">{{ post.author_name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 font-medium text-gray-500">Category</td>
+                            <td class="py-2">
+                                <span class="inline-block px-2.5 py-0.5 text-xs font-semibold text-white bg-blue-600 rounded-md">
+                                    {{ post.category }}
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 font-medium text-gray-500">Status</td>
+                            <td class="py-2">
+                                {% if post.status == 'Published' %}
+                                    <span class="inline-block px-2.5 py-0.5 text-xs font-medium text-white bg-emerald-600 rounded">Published</span>
+                                {% else %}
+                                    <span class="inline-block px-2.5 py-0.5 text-xs font-medium text-gray-900 bg-amber-400 rounded">Draft</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 font-medium text-gray-500">Date</td>
+                            <td class="py-2 text-gray-600">{{ post.created_at|date:"d F Y" }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Irreversible Warning Text -->
+            <div class="flex items-center justify-center gap-1.5 text-xs font-semibold text-amber-600 mb-6 bg-amber-50 border border-amber-200 px-3 py-2 rounded-lg w-full">
+                ⚠️ This action cannot be undone!
+            </div>
+
+            <!-- Action Form/Buttons -->
+            <form method="POST" class="flex items-center justify-center gap-4 w-full">
+                {% csrf_token %}
+                <!-- Delete Button -->
+                <button type="submit" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-medium py-2.5 px-4 rounded-lg shadow transition flex items-center justify-center gap-2">
+                    🗑️ Yes, Delete
+                </button>
+                
+                <!-- Cancel / Go Back Link/Button -->
+                <a href="{% url 'all_posts' %}" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-medium py-2.5 px-4 rounded-lg shadow transition flex items-center justify-center gap-2">
+                    ❌ Cancel
+                </a>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+    
+{% endblock %}
