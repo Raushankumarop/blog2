@@ -20,7 +20,7 @@ def index(request):
         'random_color': random_color
     }
     return render(request, 'index.html', context)
-@login_required
+
 def add_post(request):
     if request.method == 'POST':
         form = BlogPostForm(request.POST)
@@ -57,7 +57,7 @@ def category_posts(request, category_id):
     category = Category.objects.get(id=category_id)
     posts = BlogPost.objects.filter(category=category)
     return render(request, 'category_wise.html', {'category': category, 'posts': posts})
-@login_required
+
 def update_post(request, slug):
     post = BlogPost.objects.get(slug=slug)
     if request.method == 'POST':
@@ -68,7 +68,7 @@ def update_post(request, slug):
     else:
         form = BlogPostForm(instance=post)
     return render(request, 'update.html', {'form': form, 'post': post})
-@login_required
+
 def delete_post(request, slug):
     post = BlogPost.objects.get(slug=slug)
     if request.method == 'POST':
